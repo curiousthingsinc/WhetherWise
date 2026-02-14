@@ -6,27 +6,21 @@
 //
 
 import SwiftUI
-import SwiftData
+import WhetherWiseCore
 
 @main
 struct WhetherWiseMacApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-        .modelContainer(sharedModelContainer)
+  var body: some Scene {
+    MenuBarExtra("WhetherWise", systemImage: "sun.max.fill") {
+      // Directly showing the shared Dashboard
+      DashboardView()
+        .frame(width: 300, height: 400)
+      
+      Divider()
+      Button("Quit") {
+        NSApplication.shared.terminate(nil)
+      }
     }
+    .menuBarExtraStyle(.window) // Makes it look like a pop-over
+  }
 }

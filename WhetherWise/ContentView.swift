@@ -6,56 +6,53 @@
 //
 
 import SwiftUI
+import WhetherWiseCore
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
+  @State private var selectedTab: Tab? = .dashboard
+  
+  enum Tab: Hashable, CaseIterable {
+    case dashboard, rules, settings
+    
+    var title: String {
+      switch self {
+      case .dashboard: return "Dashboard"
+      case .rules: return "Rules"
+      case .settings: return "Settings"
+      }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
+    
+    var icon: String {
+      switch self {
+      case .dashboard: return "aqi.medium"
+      case .rules: return "list.bullet.indent"
+      case .settings: return "gearshape"
+      }
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+  }
+  
+  var body: some View {
+    NavigationSplitView {
+      // Sidebar for iPad / Tab Bar for iPhone
+      List(Tab.allCases, id: \.self, selection: $selectedTab) { tab in
+        Label(tab.title, systemImage: tab.icon)
+      }
+      .navigationTitle("WhetherWise")
+    } detail: {
+      // The content area
+      if let selectedTab {
+        switch selectedTab {
+        case .dashboard:
+          DashboardView() // Shared from Core
+        case .rules:
+          Text("Rules Screen")
+        case .settings:
+          Text("Settings Screen")
         }
+      }
     }
+  }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-}
+
