@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		077874002F40E6E800C94F79 /* WhetherWiseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 077873FF2F40E6E800C94F79 /* WhetherWiseCore */; };
 		077874022F40E6F700C94F79 /* WhetherWiseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 077874012F40E6F700C94F79 /* WhetherWiseCore */; };
+		077874092F40EB6F00C94F79 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077874082F40EB6F00C94F79 /* WidgetKit.framework */; };
+		0778740B2F40EB6F00C94F79 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0778740A2F40EB6F00C94F79 /* SwiftUI.framework */; };
+		077874182F40EB7000C94F79 /* WhetherWiseWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 077874072F40EB6F00C94F79 /* WhetherWiseWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0778741F2F40EBCB00C94F79 /* WhetherWiseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0778741E2F40EBCB00C94F79 /* WhetherWiseCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +44,28 @@
 			remoteGlobalIDString = 077873D32F40E4D900C94F79;
 			remoteInfo = WhetherWiseMac;
 		};
+		077874162F40EB7000C94F79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 077873982F40E35700C94F79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 077874062F40EB6F00C94F79;
+			remoteInfo = WhetherWiseWidgetsExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0778741D2F40EB7000C94F79 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				077874182F40EB7000C94F79 /* WhetherWiseWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		077873A02F40E35700C94F79 /* WhetherWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhetherWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +75,10 @@
 		077873D42F40E4D900C94F79 /* WhetherWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhetherWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		077873E22F40E4DA00C94F79 /* WhetherWiseMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhetherWiseMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		077873EC2F40E4DA00C94F79 /* WhetherWiseMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhetherWiseMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		077874072F40EB6F00C94F79 /* WhetherWiseWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WhetherWiseWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		077874082F40EB6F00C94F79 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
+		0778740A2F40EB6F00C94F79 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		077874202F40EC3500C94F79 /* WhetherWiseWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhetherWiseWidgetsExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -59,6 +88,13 @@
 				Info.plist,
 			);
 			target = 0778739F2F40E35700C94F79 /* WhetherWise */;
+		};
+		0778741C2F40EB7000C94F79 /* Exceptions for "WhetherWiseWidgets" folder in "WhetherWiseWidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 077874062F40EB6F00C94F79 /* WhetherWiseWidgetsExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -94,6 +130,14 @@
 		077873EF2F40E4DA00C94F79 /* WhetherWiseMacUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = WhetherWiseMacUITests;
+			sourceTree = "<group>";
+		};
+		0778740C2F40EB6F00C94F79 /* WhetherWiseWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0778741C2F40EB7000C94F79 /* Exceptions for "WhetherWiseWidgets" folder in "WhetherWiseWidgetsExtension" target */,
+			);
+			path = WhetherWiseWidgets;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -143,12 +187,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		077874042F40EB6F00C94F79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0778741F2F40EBCB00C94F79 /* WhetherWiseCore in Frameworks */,
+				0778740B2F40EB6F00C94F79 /* SwiftUI.framework in Frameworks */,
+				077874092F40EB6F00C94F79 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		077873972F40E35700C94F79 = {
 			isa = PBXGroup;
 			children = (
+				077874202F40EC3500C94F79 /* WhetherWiseWidgetsExtension.entitlements */,
 				077873CF2F40E3BA00C94F79 /* WhetherWiseCore */,
 				077873A22F40E35700C94F79 /* WhetherWise */,
 				077873B42F40E35900C94F79 /* WhetherWiseTests */,
@@ -156,6 +211,7 @@
 				077873D52F40E4D900C94F79 /* WhetherWiseMac */,
 				077873E52F40E4DA00C94F79 /* WhetherWiseMacTests */,
 				077873EF2F40E4DA00C94F79 /* WhetherWiseMacUITests */,
+				0778740C2F40EB6F00C94F79 /* WhetherWiseWidgets */,
 				077873FE2F40E6E800C94F79 /* Frameworks */,
 				077873A12F40E35700C94F79 /* Products */,
 			);
@@ -170,6 +226,7 @@
 				077873D42F40E4D900C94F79 /* WhetherWise.app */,
 				077873E22F40E4DA00C94F79 /* WhetherWiseMacTests.xctest */,
 				077873EC2F40E4DA00C94F79 /* WhetherWiseMacUITests.xctest */,
+				077874072F40EB6F00C94F79 /* WhetherWiseWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +234,8 @@
 		077873FE2F40E6E800C94F79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				077874082F40EB6F00C94F79 /* WidgetKit.framework */,
+				0778740A2F40EB6F00C94F79 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,10 +250,12 @@
 				0778739C2F40E35700C94F79 /* Sources */,
 				0778739D2F40E35700C94F79 /* Frameworks */,
 				0778739E2F40E35700C94F79 /* Resources */,
+				0778741D2F40EB7000C94F79 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				077874172F40EB7000C94F79 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				077873A22F40E35700C94F79 /* WhetherWise */,
@@ -322,6 +383,29 @@
 			productReference = 077873EC2F40E4DA00C94F79 /* WhetherWiseMacUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		077874062F40EB6F00C94F79 /* WhetherWiseWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 077874192F40EB7000C94F79 /* Build configuration list for PBXNativeTarget "WhetherWiseWidgetsExtension" */;
+			buildPhases = (
+				077874032F40EB6F00C94F79 /* Sources */,
+				077874042F40EB6F00C94F79 /* Frameworks */,
+				077874052F40EB6F00C94F79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0778740C2F40EB6F00C94F79 /* WhetherWiseWidgets */,
+			);
+			name = WhetherWiseWidgetsExtension;
+			packageProductDependencies = (
+				0778741E2F40EBCB00C94F79 /* WhetherWiseCore */,
+			);
+			productName = WhetherWiseWidgetsExtension;
+			productReference = 077874072F40EB6F00C94F79 /* WhetherWiseWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -354,6 +438,9 @@
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = 077873D32F40E4D900C94F79;
 					};
+					077874062F40EB6F00C94F79 = {
+						CreatedOnToolsVersion = 26.2;
+					};
 				};
 			};
 			buildConfigurationList = 0778739B2F40E35700C94F79 /* Build configuration list for PBXProject "WhetherWise" */;
@@ -376,6 +463,7 @@
 				077873D32F40E4D900C94F79 /* WhetherWiseMac */,
 				077873E12F40E4DA00C94F79 /* WhetherWiseMacTests */,
 				077873EB2F40E4DA00C94F79 /* WhetherWiseMacUITests */,
+				077874062F40EB6F00C94F79 /* WhetherWiseWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -417,6 +505,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		077873EA2F40E4DA00C94F79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077874052F40EB6F00C94F79 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -468,6 +563,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		077874032F40EB6F00C94F79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -490,6 +592,11 @@
 			isa = PBXTargetDependency;
 			target = 077873D32F40E4D900C94F79 /* WhetherWiseMac */;
 			targetProxy = 077873ED2F40E4DA00C94F79 /* PBXContainerItemProxy */;
+		};
+		077874172F40EB7000C94F79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 077874062F40EB6F00C94F79 /* WhetherWiseWidgetsExtension */;
+			targetProxy = 077874162F40EB7000C94F79 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -927,6 +1034,94 @@
 			};
 			name = Release;
 		};
+		0778741A2F40EB7000C94F79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WhetherWiseWidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GD997PK59M;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WhetherWiseWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WhetherWise;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.curiousthings.WhetherWise.WhetherWiseWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Debug;
+		};
+		0778741B2F40EB7000C94F79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WhetherWiseWidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GD997PK59M;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WhetherWiseWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WhetherWise;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.curiousthings.WhetherWise.WhetherWiseWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -993,6 +1188,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		077874192F40EB7000C94F79 /* Build configuration list for PBXNativeTarget "WhetherWiseWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0778741A2F40EB7000C94F79 /* Debug */,
+				0778741B2F40EB7000C94F79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1001,6 +1205,10 @@
 			productName = WhetherWiseCore;
 		};
 		077874012F40E6F700C94F79 /* WhetherWiseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WhetherWiseCore;
+		};
+		0778741E2F40EBCB00C94F79 /* WhetherWiseCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WhetherWiseCore;
 		};
