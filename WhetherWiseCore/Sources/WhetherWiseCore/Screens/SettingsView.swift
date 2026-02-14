@@ -13,10 +13,6 @@ struct SettingsView: View {
     }
 }
 
-#Preview("iPad") {
-    SettingsView()
-}
-
-#Preview("iPhone") {
+#Preview {
   SettingsView()
 }

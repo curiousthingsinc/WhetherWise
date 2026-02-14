@@ -13,10 +13,6 @@ struct RulesView: View {
   }
 }
 
-#Preview("iPhone") {
-  RulesView()
-}
-
-#Preview("iPad") {
+#Preview {
   RulesView()
 }

@@ -24,14 +24,6 @@ public struct DashboardView: View {
   }
 }
 
-#Preview("iPhone") {
-  DashboardView()
-}
-
-#Preview("iPad") {
-  DashboardView()
-}
-
-#Preview("iPad Landscape", traits: .landscapeLeft ) {
+#Preview {
   DashboardView()
 }
