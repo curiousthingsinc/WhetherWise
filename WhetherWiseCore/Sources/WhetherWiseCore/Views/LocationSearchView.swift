@@ -54,17 +54,18 @@ struct LocationSearchView: View {
       }
       .searchable(text: $viewModel.queryFragment, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search for a city...")
       .toolbar {
-        ToolbarItem(placement: .topBarTrailing) { // Standard position for Close is Trailing
+        ToolbarItem(placement: .topBarTrailing) {
           Button {
             dismiss()
           } label: {
             Image(systemName: "xmark.circle.fill")
               .foregroundStyle(.secondary)
               .symbolVariant(.circle.fill)
-              .font(.title3) // Standard size for this button
+              .font(.title3)
           }
           .buttonStyle(.plain)
-          .accessibilityLabel("Close") // Crucial for screen readers!
+          .accessibilityLabel("Close")
+          .interactiveDismissDisabled(viewModel.isLoading)
         }
       }
     }
@@ -72,8 +73,16 @@ struct LocationSearchView: View {
 }
 
 #Preview {
-  LocationSearchView { location in
-    // This code runs when you tap a row in the preview
-    print("Preview Selected: \(location.name)")
+  @Previewable @State var isPresented = true
+  
+  VStack {
+    if isPresented {
+      LocationSearchView { location in
+        print("Selected: \(location.name), \(location.latitude), \(location.longitude), \(location.timeZoneID)")
+        isPresented = false
+      }
+    } else {
+      Button("Re-open Search") { isPresented = true }
+    }
   }
 }

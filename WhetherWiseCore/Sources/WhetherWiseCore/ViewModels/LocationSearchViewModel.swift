@@ -5,7 +5,6 @@
 //  Created by Eric Lobdell on 2/14/26.
 //
 
-
 import SwiftUI
 import MapKit
 import Combine
@@ -23,7 +22,6 @@ class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchComplete
     completer.delegate = self
     completer.resultTypes = .address
     
-    // Debounce input to prevent API spam while typing
     $queryFragment
       .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
       .sink { [weak self] query in
@@ -57,10 +55,10 @@ class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchComplete
           let item = response.mapItems.first else { return nil }
     
     return WhetherRuleLocation(
-      name: completion.title, // Use the clean title from autocomplete
+      name: completion.title,
       latitude: item.placemark.coordinate.latitude,
       longitude: item.placemark.coordinate.longitude,
-      timeZoneID: item.placemark.timeZone?.identifier ?? "UTC"
+      timeZoneID: item.timeZone?.identifier ?? "UTC"
     )
   }
 }
@@ -70,7 +68,6 @@ extension LocationSearchViewModel {
   static var sample: LocationSearchViewModel {
     let vm = LocationSearchViewModel()
     vm.queryFragment = "New York"
-    // Manually populate results if they are accessible
     return vm
   }
 }
