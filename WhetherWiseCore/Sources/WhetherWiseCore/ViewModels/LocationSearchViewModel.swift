@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 import Combine
 
-class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate, @unchecked Sendable {
+public class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate, @unchecked Sendable {
   @Published var queryFragment: String = ""
   @Published var results: [MKLocalSearchCompletion] = []
   @Published var isLoading: Bool = false
@@ -35,16 +35,16 @@ class LocationSearchViewModel: NSObject, ObservableObject, MKLocalSearchComplete
   }
   
   // MARK: - Delegate Methods
-  func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+  public func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
     self.results = completer.results
   }
   
-  func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-    // Handle error quietly
+  public func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+    self.results = []
   }
   
   // MARK: - Selection Logic
-  func selectLocation(_ completion: MKLocalSearchCompletion) async -> WhetherRuleLocation? {
+  public func selectLocation(_ completion: MKLocalSearchCompletion) async -> WhetherRuleLocation? {
     isLoading = true
     defer { isLoading = false }
     

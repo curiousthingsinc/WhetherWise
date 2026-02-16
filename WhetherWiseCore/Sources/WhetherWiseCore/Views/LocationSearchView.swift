@@ -5,7 +5,6 @@ struct LocationSearchView: View {
   @Environment(\.dismiss) var dismiss
   @StateObject private var viewModel = LocationSearchViewModel()
   
-  // The callback to return the selected data
   var onSelect: (WhetherRuleLocation) -> Void
   
   var body: some View {
@@ -23,7 +22,6 @@ struct LocationSearchView: View {
             VStack(alignment: .leading) {
               Text(result.title)
                 .font(.headline)
-                .foregroundStyle(.primary)
               
               if !result.subtitle.isEmpty {
                 Text(result.subtitle)
@@ -31,10 +29,11 @@ struct LocationSearchView: View {
                   .foregroundStyle(.secondary)
               }
             }
-            .padding(.vertical, 4) // Breathing room for Mac mouse users
+            .padding(.vertical, 4)
           }
-          .buttonStyle(.plain) // Removes default blue link color on iOS/Mac
+          .buttonStyle(.plain)
         }
+        .searchable(text: $viewModel.queryFragment, prompt: "Search for a city...")
         .overlay {
           if viewModel.results.isEmpty && !viewModel.queryFragment.isEmpty {
             ContentUnavailableView("No Results", systemImage: "magnifyingglass", description: Text("Check the spelling or try a new search."))
@@ -43,29 +42,12 @@ struct LocationSearchView: View {
           }
         }
         
-        // Loading Overlay
         if viewModel.isLoading {
           ProgressView()
             .controlSize(.large)
             .padding()
             .background(.ultraThinMaterial)
             .cornerRadius(8)
-        }
-      }
-      .searchable(text: $viewModel.queryFragment, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search for a city...")
-      .toolbar {
-        ToolbarItem(placement: .topBarTrailing) {
-          Button {
-            dismiss()
-          } label: {
-            Image(systemName: "xmark.circle.fill")
-              .foregroundStyle(.secondary)
-              .symbolVariant(.circle.fill)
-              .font(.title3)
-          }
-          .buttonStyle(.plain)
-          .accessibilityLabel("Close")
-          .interactiveDismissDisabled(viewModel.isLoading)
         }
       }
     }

@@ -7,8 +7,16 @@
 
 import WidgetKit
 import SwiftUI
+import SwiftData
+import WhetherWiseCore
 
 struct Provider: AppIntentTimelineProvider {
+  let modelContext: ModelContext
+  
+  init() {
+    self.modelContext = ModelContext(PersistenceController.shared.container)
+  }
+  
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
     }

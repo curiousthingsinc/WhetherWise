@@ -8,24 +8,40 @@
 import SwiftData
 import Foundation
 
-public actor PersistenceController {
+public struct PersistenceController: Sendable {
   public static let shared = PersistenceController()
   
+  // Remove @MainActor - container can be accessed from any thread
   public let container: ModelContainer
   
-  init() {
-    // 1. Define the Schema (all your @Model classes)
-    let schema = Schema([WhetherRule.self])
+  private init() {
+    let schema = Schema([
+      WhetherRule.self,
+      WhetherCondition.self
+    ])
     
-    // 2. Point to the App Group container
-    let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.co.curiousthings.WhetherWise")!
-    let storeURL = groupURL.appendingPathComponent("WhetherWise.store")
+    let appGroupID = "group.co.curiousthings.WhetherWise"
     
-    // 3. Configure for iCloud
-    let config = ModelConfiguration(url: storeURL, cloudKitDatabase: .private("iCloud.co.curiousthings.WhetherWise"))
+    guard let appGroupURL = FileManager.default.containerURL(
+      forSecurityApplicationGroupIdentifier: appGroupID
+    ) else {
+      fatalError("App Group '\(appGroupID)' not found. Check Signing & Capabilities.")
+    }
+    
+    let storeURL = appGroupURL.appendingPathComponent("WhetherWise.sqlite")
+    
+    print("📦 SwiftData store location: \(storeURL.path)")
+    
+    let modelConfiguration = ModelConfiguration(
+      schema: schema,
+      url: storeURL,
+      cloudKitDatabase: .none
+    )
     
     do {
-      container = try ModelContainer(for: schema, configurations: [config])
+      // ModelContainer itself is thread-safe
+      container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+      print("✅ ModelContainer created successfully")
     } catch {
       fatalError("Could not create ModelContainer: \(error)")
     }

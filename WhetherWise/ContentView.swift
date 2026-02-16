@@ -48,7 +48,7 @@ struct ContentView: View {
         case .rules:
           Text("Rules Screen")
         case .settings:
-          Text("Settings Screen")
+          SettingsView()
         }
       }
     }
