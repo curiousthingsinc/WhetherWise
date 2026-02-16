@@ -96,6 +96,38 @@ extension Measurement {
 class WeatherSettings {
   nonisolated(unsafe) static let store = NSUbiquitousKeyValueStore.default
   
+  nonisolated(unsafe) static var useCurrentLocation: Bool {
+    get {
+      store.synchronize()
+      return store.bool(forKey: "useCurrentLocation")
+    }
+    set {
+      store.set(newValue, forKey: "useCurrentLocation")
+      store.synchronize()
+    }
+  }
+  
+  nonisolated(unsafe) static var defaultLocation: WhetherRuleLocation? {
+    get {
+      store.synchronize()
+      guard let data = store.data(forKey: "defaultLocation"),
+            let decoded = try? JSONDecoder().decode(WhetherRuleLocation.self, from: data) else {
+        return nil
+      }
+      return decoded
+    }
+    set {
+      if let newValue = newValue,
+         let encoded = try? JSONEncoder().encode(newValue) {
+        store.set(encoded, forKey: "defaultLocation")
+        store.synchronize()
+      } else {
+        store.removeObject(forKey: "defaultLocation")
+        store.synchronize()
+      }
+    }
+  }
+  
   nonisolated(unsafe) static var temperatureUnit: TemperatureUnitPreference {
     get {
       print("📖 Reading temperatureUnit")

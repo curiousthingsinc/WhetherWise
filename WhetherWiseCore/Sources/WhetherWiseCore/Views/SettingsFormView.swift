@@ -10,7 +10,11 @@ import SwiftUI
 struct SettingsFormView: View {
     var body: some View {
       Form {
-        WeatherSettingsView()
+#if os(iOS)
+        WeatherSettingsView_iOS()
+#elseif os(macOS)
+        WeatherSettingsView_macOS()
+#endif
       }
     }
 }
