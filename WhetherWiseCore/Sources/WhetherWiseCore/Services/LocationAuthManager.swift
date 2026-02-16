@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 
+@MainActor
 class LocationAuthManager: NSObject, ObservableObject, CLLocationManagerDelegate {
   @Published var authorizationStatus: CLAuthorizationStatus
   private let manager = CLLocationManager()
@@ -19,14 +20,12 @@ class LocationAuthManager: NSObject, ObservableObject, CLLocationManagerDelegate
   }
   
   func requestPermission() {
-    print("🔵 Requesting location permission...")
-    print("🔵 Current status: \(manager.authorizationStatus.rawValue)")
     manager.requestWhenInUseAuthorization()
-    print("🔵 Request sent")
   }
   
-  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    print("🟢 Authorization changed to: \(manager.authorizationStatus.rawValue)")
-    authorizationStatus = manager.authorizationStatus
+  nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    Task { @MainActor in
+      self.authorizationStatus = self.manager.authorizationStatus
+    }
   }
 }
